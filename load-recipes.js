@@ -1,38 +1,43 @@
-import { readdirSync } from 'fs';
-import { join, extname } from 'path';
-import knex from 'knex';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { db } from './server.js'; // Importa l'istanza di Knex
+
+// Ottieni il percorso della directory corrente
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Funzione per caricare ricette
 const loadRecipes = async () => {
-    const recipesDir = join(__dirname, './ricette'); // Sostituisci con il percorso corretto
-    const files = readdirSync(recipesDir);
+    const recipesDir = path.join(__dirname, 'recipes'); // Costruisce il percorso alla cartella 'recipes' nella stessa directory
+    const files = fs.readdirSync(recipesDir);
     
     for (const file of files) {
-        if (extname(file) === '.js') {
-            const recipePath = join(recipesDir, file);
-            const recipe = require(recipePath);
+        if (path.extname(file) === '.js') {
+            const recipePath = path.join(recipesDir, file);
+            const recipe = await import(recipePath);
             
             // Adatta i dati della ricetta ai nomi delle colonne del database
             const adaptedRecipe = {
-                id: recipe.id,
-                title: recipe.title,
-                description: recipe.description,
-                ingredients: recipe.ingredients.join(', '), // Modifica come necessario
-                instructions: recipe.instructions.join(', '), // Modifica come necessario
-                prep_time: recipe.prepTime,
-                cook_time: recipe.cookTime,
-                total_time: recipe.totalTime,
-                servings: recipe.servings,
-                difficulty: recipe.difficulty,
-                image_carousel: recipe.imageCarousel,
-                images_miniature: recipe.imagesMiniature,
-                video: recipe.video,
-                images_cook_book: recipe.imagesCookBook,
-                images_square: recipe.imagesSquare
+                id: recipe.default.id,
+                title: recipe.default.title,
+                description: recipe.default.description,
+                ingredients: recipe.default.ingredients.join(', '), // Modifica come necessario
+                instructions: recipe.default.instructions.join(', '), // Modifica come necessario
+                prep_time: recipe.default.prepTime,
+                cook_time: recipe.default.cookTime,
+                total_time: recipe.default.totalTime,
+                servings: recipe.default.servings,
+                difficulty: recipe.default.difficulty,
+                image_carousel: recipe.default.imageCarousel,
+                images_miniature: recipe.default.imagesMiniature,
+                video: recipe.default.video,
+                images_cook_book: recipe.default.imagesCookBook,
+                images_square: recipe.default.imagesSquare
             };
             
             // Inserisci la ricetta nel database
-            await knex('recipes').insert(adaptedRecipe);
+            await db('recipes').insert(adaptedRecipe);
         }
     }
     
