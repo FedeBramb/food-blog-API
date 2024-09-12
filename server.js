@@ -33,7 +33,7 @@ const app = express();
 
 // Configura CORS per permettere richieste dal frontend
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://food-blog-tlsm.onrender.com',
 }));
 
 app.use(bodyParser.json());
