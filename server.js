@@ -73,4 +73,3 @@ app.listen(3000, () => {
     console.log('app sta funzionando su porta 3000')
 })
 
-export { db };
