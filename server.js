@@ -16,7 +16,7 @@ import { handleGetRecipe } from './controllers/recipes.controller.js';
 import { handleCommentDelete } from './controllers/comment.controller.js';
 
 
-const db = knex({
+export const db = knex({
   client: 'pg',
   connection: {
       connectionString : process.env.DATABASE_URL,
