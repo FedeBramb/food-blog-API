@@ -16,7 +16,7 @@ import { handleGetRecipe } from './controllers/recipes.controller.js';
 import { handleCommentDelete } from './controllers/comment.controller.js';
 
 
-export const db = knex({
+const db = knex({
   client: 'pg',
   connection: {
       connectionString : process.env.DATABASE_URL,
@@ -69,7 +69,8 @@ app.post('/recipes/:idricetta/comments', async (req, res) => { handleAddComment(
 // Cancella commento utente
 app.delete('/recipes/:idricetta/comments', async (req, res) => { handleCommentDelete(req, res, db)});
 
-app.listen(3000, () => {
-    console.log('app sta funzionando su porta 3000')
-})
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`App is running on port ${PORT}`);
+});
 
