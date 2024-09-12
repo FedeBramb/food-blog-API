@@ -21,7 +21,7 @@ const db = knex({
   connection: {
     host : '127.0.0.1', //localhost
     user : 'postgres', 
-    port: 5433, 
+    port: 5432, 
     password : 'test', 
     database : 'dbfoodblog' 
   }
