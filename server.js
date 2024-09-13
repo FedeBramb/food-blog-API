@@ -32,9 +32,7 @@ const db = knex({
 const app = express();
 
 // Configura CORS per permettere richieste dal frontend
-app.use(cors({
-  origin: 'https://food-blog-tlsm.onrender.com',
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -69,7 +67,7 @@ app.post('/recipes/:idricetta/comments', async (req, res) => { handleAddComment(
 // Cancella commento utente
 app.delete('/recipes/:idricetta/comments', async (req, res) => { handleCommentDelete(req, res, db)});
 
-const PORT = process.env.PORT;
+const PORT = 5432;
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
 });
