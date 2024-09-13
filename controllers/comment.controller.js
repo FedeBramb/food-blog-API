@@ -50,13 +50,13 @@ export const handleCommentsRecipeId = async (req, res, db) => {
 }
 
 export const handleCommentDelete = async (req, res, db) => {
-    const { idricetta } = req.params; // id della ricetta
+    const { idricetta, id } = req.params; // id della ricetta, id commento
     const { user_id } = req.body; // id dell'utente
 
     try {
         // Esegui la cancellazione
         const result = await db('comments')
-            .where({ recipe_id: idricetta, user_id: user_id })
+            .where({ recipe_id: idricetta, user_id: user_id, id: id })
             .del();
 
         // Controlla se è stato cancellato almeno un commento

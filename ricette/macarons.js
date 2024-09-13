@@ -1,5 +1,5 @@
 const macarons = {
-    "id": "7",
+    "id": "6",
     "title": "Macarons",
     "description": "Delizia il tuo palato con i nostri Macarons: piccoli bocconcini di felicità, con i loro colori vivaci e la loro consistenza delicata.",
     "ingredients": [

@@ -1,5 +1,5 @@
 const pancake = {
-    "id": "3",
+    "id": "8",
     "title": "Pancake",
     "description": "Deliziosi pancake soffici e dorati, accompagnati da gustoso sciroppo d'acero e frutti di bosco freschi.",
     "ingredients": [

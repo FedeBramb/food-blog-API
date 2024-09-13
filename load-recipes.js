@@ -34,7 +34,7 @@ const importRecipe = async (recipe) => {
       video: video,
       images_cook_book: imagesCookBook,
       images_square: imagesSquare,
-      created_at: new Date();
+      created_at: new Date(),
     });
     console.log(`Ricetta "${title}" inserita con successo!`);
   } catch (err) {
@@ -61,7 +61,6 @@ const importRecipes = async () => {
   }
 };
 
-importRecipes();
 
 
 

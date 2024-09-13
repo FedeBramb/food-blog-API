@@ -1,5 +1,5 @@
 const tomahawk = {
-    "id": "1",
+    "id": "9",
     "title": "Tomahawk",
     "description": "Una succulenta bistecca di manzo cotta alla perfezione sulla griglia, aromatizzata con aglio, pepe nero, ginepro, alloro, salvia e rosmarino.",
     "ingredients": [
