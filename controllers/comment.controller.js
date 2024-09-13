@@ -56,7 +56,7 @@ export const handleCommentDelete = async (req, res, db) => {
     try {
 
         const result = await db('comments')
-            .where({ recipe_id: idricetta, user_id: user_id, id: idcomment })
+            .where({ recipe_id: idricetta, user_id: user_id, id_comment: idcomment })
             .del();
 
         // Controlla se è stato cancellato almeno un commento
