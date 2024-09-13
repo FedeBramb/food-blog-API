@@ -54,8 +54,7 @@ export const handleCommentDelete = async (req, res, db) => {
     const { user_id } = req.body; // id dell'utente
 
     try {
-        // Esegui la cancellazione
-        console.log(id);
+
         const result = await db('comments')
             .where({ recipe_id: idricetta, user_id: user_id, id: idcomment })
             .del();
