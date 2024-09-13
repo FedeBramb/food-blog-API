@@ -67,7 +67,7 @@ app.get('/recipes/:idricetta/comments', async (req, res) => { handleCommentsReci
 app.post('/recipes/:idricetta/comments', async (req, res) => { handleAddComment(req, res, db) });
 
 // Cancella commento utente
-app.delete('/recipes/:idricetta/comments/:comment_id', async (req, res) => { handleCommentDelete(req, res, db)});
+app.delete('/recipes/:idricetta/comments/:id_comment', async (req, res) => { handleCommentDelete(req, res, db)});
 
 const PORT = 5432;
 app.listen(PORT, () => {
