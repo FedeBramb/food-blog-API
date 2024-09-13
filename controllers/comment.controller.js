@@ -5,7 +5,7 @@ export const handleAddComment = async (req, res, db) => {
     try {
         const result = await db('comments')
             .insert({
-                comment_id: id,
+                id_comment: id,
                 recipe_id: idricetta,
                 user_name: user_name,
                 user_id: user_id,
