@@ -15,17 +15,13 @@ export const handleAddComment = async (req, res, db) => {
             })
             .returning('*')
 
-        const newComment = result[0];
-
         // Recupera tutti i commenti della ricetta
         // 
         const commentsResult = await db('comments')
             .select('*')
             .where({ recipe_id: idricetta })
         // Restituiamo i commenti e il nuovo commento
-        res.json({
-            commentsResult
-        });
+        res.json(commentsResult);
 
     } catch (error) {
         console.error('Errore durante l\'aggiunta del commento:', error);
