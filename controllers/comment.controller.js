@@ -51,7 +51,7 @@ export const handleCommentsRecipeId = async (req, res, db) => {
 
 export const handleCommentDelete = async (req, res, db) => {
     const { idricetta, id_comment } = req.params; // id della ricetta
-    const { user_id } = req.body; // id dell'utente
+    const user_id = req.user.id;
 
     try {
         // Esegui la cancellazione
