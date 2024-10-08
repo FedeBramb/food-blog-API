@@ -3,21 +3,19 @@ export const handleRegister = async (req, res, db, bcrypt) => {
   
     try {
       // Verifica che email, username e password siano presenti
-      if (!email || !username || !password) {
+      if (!email || !username || !password || !checkPassword) {
         return res.status(400).json({ error: 'Form incompleta' });
       }
 
       if (password !== checkPassword) {
-        setError("Le password non coincidono");
-        throw error;
+        return res.status(400).json({ error: 'Le passwords non coincidono' });
       }
 
       // Validazione di base: email
       const emailRegex = /\S+@\S+\.\S+/;
       if (!emailRegex.test(email)) {
           console.log("Invalid email"); // Log per il debug
-          setError("L'email non è valida");
-          throw error;
+          return res.status(400).json({ error: 'Le passwords non coincidono' });
       }
   
       // Controlla se l'email o il username sono già in uso
