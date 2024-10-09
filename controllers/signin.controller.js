@@ -13,9 +13,8 @@ export const handleSignin = async (req, res, db, bcrypt) => {
         // Restituisce l'utente o psw errata
         return isMatch 
             ? res.json(user) 
-            : res.status(400).json({ error: 'Errore di accesso: password errata' });   
+            : res.status(400).json({ error: ': password errata' });   
     } catch (error) {
-        console.error('Errore durante il login:', error);
         res.status(500).json({ error: 'Errore del server' });
     }
 };

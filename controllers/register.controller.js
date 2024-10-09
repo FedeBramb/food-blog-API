@@ -15,7 +15,7 @@ export const handleRegister = async (req, res, db, bcrypt) => {
       const emailRegex = /\S+@\S+\.\S+/;
       if (!emailRegex.test(email)) {
           console.log("Invalid email"); // Log per il debug
-          return res.status(400).json({ error: 'Le passwords non coincidono' });
+          return res.status(400).json({ error: 'Email non valida' });
       }
   
       // Controlla se l'email o il username sono già in uso
