@@ -10,10 +10,10 @@ export const handleGetRecipes = async (req, res, db) => {
 }
 
 export const handleGetRecipe = async (req, res, db) => {
-    const { id } = req.params;
+    const { recipe_id } = req.params;
     try {
         const result = await db('recipes')
-            .where({ id })
+            .where({ id: recipe_id })
             .first()
         
         result ? res.json(result) : res.status(404).json('Ricetta non trovata');
