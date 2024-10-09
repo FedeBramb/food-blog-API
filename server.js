@@ -58,7 +58,7 @@ app.get('/profile/:id', async (req, res) => { handleProfile(req, res, db) });
 app.get('/recipes/', async (req, res) => { handleGetRecipes(req, res, db) });
 
 // Ottiene ricetta per Id
-app.get('/recipes/:id', async (req, res) => { handleGetRecipe(req, res, db) });
+app.get('/recipes/:recipe_id', async (req, res) => { handleGetRecipe(req, res, db) });
 
 // Ottiene commenti per id ricetta
 app.get('/recipes/:recipe_id/comments', async (req, res) => { handleCommentsRecipeId(req, res, db) });
