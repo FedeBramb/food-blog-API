@@ -61,13 +61,13 @@ app.get('/recipes/', async (req, res) => { handleGetRecipes(req, res, db) });
 app.get('/recipes/:id', async (req, res) => { handleGetRecipe(req, res, db) });
 
 // Ottiene commenti per id ricetta
-app.get('/recipes/:idricetta/comments', async (req, res) => { handleCommentsRecipeId(req, res, db) });
+app.get('/recipes/:recipe_id/comments', async (req, res) => { handleCommentsRecipeId(req, res, db) });
 
 // Aggiunge nuovo commento
-app.post('/recipes/:idricetta/comments', async (req, res) => { handleAddComment(req, res, db) });
+app.post('/recipes/:recipe_id/comments', async (req, res) => { handleAddComment(req, res, db) });
 
 // Cancella commento utente
-app.delete('/recipes/:idricetta/comments/:id_comment', async (req, res) => { handleCommentDelete(req, res, db)});
+app.delete('/recipes/:recipe_id/comments/:id_comment', async (req, res) => { handleCommentDelete(req, res, db)});
 
 const PORT = 5432;
 app.listen(PORT, () => {
