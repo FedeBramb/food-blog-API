@@ -1,12 +1,12 @@
 export const handleAddComment = async (req, res, db) => {
-    const { recipe_id } = req.params; // ID della ricetta
+    const { idricetta } = req.params; // ID della ricetta
     const { id, user_id, user_name, comment_text, rating, create_at } = req.body;
 
     try {
         const result = await db('comments')
             .insert({
                 id_comment: id,
-                recipe_id: recipe_id,
+                recipe_id: idricetta,
                 user_name: user_name,
                 user_id: user_id,
                 comment_text: comment_text,
@@ -19,7 +19,7 @@ export const handleAddComment = async (req, res, db) => {
         // 
         const commentsResult = await db('comments')
             .select('*')
-            .where({ recipe_id: recipe_id })
+            .where({ recipe_id: idricetta })
         // Restituiamo i commenti e il nuovo commento
         res.json(commentsResult);
 
@@ -31,11 +31,11 @@ export const handleAddComment = async (req, res, db) => {
 
 
 export const handleCommentsRecipeId = async (req, res, db) => {
-    const { recipe_id } = req.params;
+    const { idricetta } = req.params;
     try {
         const result = await db('comments')
             .select('*')
-            .where({ recipe_id: recipe_id })
+            .where({ recipe_id: idricetta })
         // Anche se l'array dei commenti è vuoto non restituiamo un errore
         res.json(result)
           
@@ -46,19 +46,19 @@ export const handleCommentsRecipeId = async (req, res, db) => {
 }
 
 export const handleCommentDelete = async (req, res, db) => {
-    const { recipe_id, id_comment } = req.params; // id della ricetta
+    const { idricetta, id_comment } = req.params; // id della ricetta
     const { user_id } = req.body; // id dell'utente
 
     try {
         // Esegui la cancellazione
         const result = await db('comments')
-            .where({ recipe_id: recipe_id, user_id: user_id, id_comment: id_comment })
+            .where({ recipe_id: idricetta, user_id: user_id, id_comment: id_comment })
             .del();
 
         // Controlla se è stato cancellato almeno un commento
         if (result) {
             // Richiama l'handler per recuperare i commenti aggiornati
-            await handleCommentsRecipeId({ params: { recipe_id } }, res, db);
+            await handleCommentsRecipeId({ params: { idricetta } }, res, db);
         } else {
             return res.status(404).json({ message: 'Nessun commento trovato per cancellare.' });
         }
