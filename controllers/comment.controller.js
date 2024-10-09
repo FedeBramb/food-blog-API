@@ -19,7 +19,7 @@ export const handleAddComment = async (req, res, db) => {
         // 
         const commentsResult = await db('comments')
             .select('*')
-            .where({ id_recipe: recipe_id })
+            .where({ recipe_id: recipe_id })
         // Restituiamo i commenti e il nuovo commento
         res.json(commentsResult);
 
