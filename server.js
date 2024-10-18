@@ -10,6 +10,7 @@ import { handleSignin } from './controllers/signin.controller.js';
 import { handleProfile } from './controllers/profile.controller.js';
 import { handleRegister } from './controllers/register.controller.js';
 import { handleAddComment } from './controllers/comment.controller.js';
+import { handleAllComments } from './controllers/comment.controller.js';
 import { handleCommentsRecipeId } from './controllers/comment.controller.js';
 import { handleGetRecipes } from './controllers/recipes.controller.js';
 import { handleGetRecipe } from './controllers/recipes.controller.js';
@@ -59,6 +60,9 @@ app.get('/recipes/', async (req, res) => { handleGetRecipes(req, res, db) });
 
 // Ottiene ricetta per Id
 app.get('/recipes/:recipe_id', async (req, res) => { handleGetRecipe(req, res, db) });
+
+// Ottiene tutti i commenti di tutte le ricette
+app.get('recipes/comments', async (req, res) => { handleAllComments(req, res, db) });
 
 // Ottiene commenti per id ricetta
 app.get('/recipes/:recipe_id/comments', async (req, res) => { handleCommentsRecipeId(req, res, db) });

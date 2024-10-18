@@ -29,6 +29,15 @@ export const handleAddComment = async (req, res, db) => {
     }
 };
 
+export const handleAllComments = async (req, res, db) => {
+    try {
+        const comments = await db('comments').select('*');
+        res.json(comments);
+    } catch (error) {
+    res.status(500).json({ error: 'Errore nel recupero dei commenti' });
+    }
+}
+
 
 export const handleCommentsRecipeId = async (req, res, db) => {
     const { recipe_id } = req.params;
