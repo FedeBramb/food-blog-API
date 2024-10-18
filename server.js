@@ -62,7 +62,7 @@ app.get('/recipes/', async (req, res) => { handleGetRecipes(req, res, db) });
 app.get('/recipes/:recipe_id', async (req, res) => { handleGetRecipe(req, res, db) });
 
 // Ottiene tutti i commenti di tutte le ricette
-app.get('recipes/comments', async (req, res) => { handleAllComments(req, res, db) });
+app.get('comments', async (req, res) => { handleAllComments(req, res, db) });
 
 // Ottiene commenti per id ricetta
 app.get('/recipes/:recipe_id/comments', async (req, res) => { handleCommentsRecipeId(req, res, db) });
