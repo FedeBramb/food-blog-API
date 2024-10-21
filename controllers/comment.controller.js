@@ -31,12 +31,14 @@ export const handleAddComment = async (req, res, db) => {
 
 export const handleAllComments = async (req, res, db) => {
     try {
-        const comments = await db('comments').select('*');
+        const comments = await db('comments')
+          .join('recipes', 'comments.recipe_id', 'recipes.id') // Collega recipe_id con id della tabella recipes
+          .select('comments.*', 'recipes.title'); // Ottieni anche il nome della ricetta
         res.json(comments);
     } catch (error) {
-    res.status(500).json({ error: 'Errore nel recupero dei commenti' });
+        res.status(500).json({ error: 'Errore nel recupero dei commenti' });
     }
-}
+};
 
 
 export const handleCommentsRecipeId = async (req, res, db) => {
