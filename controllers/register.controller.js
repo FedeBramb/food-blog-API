@@ -1,5 +1,5 @@
 export const handleRegister = async (req, res, db, bcrypt) => {
-    const { email, username, password, checkPassword } = req.body;
+    const { email, username, password, checkPassword, avatar_url } = req.body;
   
     try {
       // Verifica che email, username e password siano presenti
@@ -39,6 +39,7 @@ export const handleRegister = async (req, res, db, bcrypt) => {
           username: username,
           password_hash: hashedPassword,
           joined: new Date(),
+          avatar_url: avatar_url,
         })
         .returning(['id', 'email', 'username', 'joined']); // Fetch all relevant fields
   
