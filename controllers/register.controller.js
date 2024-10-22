@@ -41,7 +41,7 @@ export const handleRegister = async (req, res, db, bcrypt) => {
           joined: new Date(),
           avatar_url: avatar_url,
         })
-        .returning(['id', 'email', 'username', 'joined']); // Fetch all relevant fields
+        .returning(['id', 'email', 'username', 'joined', 'avatar_url']); // Fetch all relevant fields
   
       // Restituisce l'oggetto utente appena creato
       return res.status(201).json(newUser);
