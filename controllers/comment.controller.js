@@ -29,17 +29,19 @@ export const handleAddComment = async (req, res, db) => {
     }
 };
 
+// Riceve commenti tutti i commenti di tutte le ricette dal DB.
 export const handleAllComments = async (req, res, db) => {
     try {
-        const comments = await db('comments')
-          .join('recipes', 'comments.recipe_id', 'recipes.id') // Collega recipe_id con id della tabella recipes
-          .select('comments.*', 'recipes.title'); // Ottieni anche il nome della ricetta
-        res.json(comments);
+      const comments = await db('comments')
+        .join('recipes', 'comments.recipe_id', 'recipes.id') // Collega recipe_id con id della tabella recipes
+        .join('users', 'comments.user_id', 'users.id') // Collega user_id con id della tabella users
+        .select('comments.*', 'recipes.title', 'users.username', 'users.avatar_url'); // Ottieni anche il nome dell'utente e l'URL dell'avatar
+      res.json(comments);
     } catch (error) {
-        res.status(500).json({ error: 'Errore nel recupero dei commenti' });
+      res.status(500).json({ error: 'Errore nel recupero dei commenti' });
     }
-};
-
+  };
+  
 
 export const handleCommentsRecipeId = async (req, res, db) => {
     const { recipe_id } = req.params;
