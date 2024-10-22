@@ -43,20 +43,21 @@ export const handleAllComments = async (req, res, db) => {
   };
   
 
-export const handleCommentsRecipeId = async (req, res, db) => {
+  export const handleCommentsRecipeId = async (req, res, db) => {
     const { recipe_id } = req.params;
     try {
-        const result = await db('comments')
-            .select('*')
-            .where({ recipe_id: recipe_id })
-        // Anche se l'array dei commenti è vuoto non restituiamo un errore
-        res.json(result)
-          
+      const comments = await db('comments')
+        .join('recipes', 'comments.recipe_id', 'recipes.id') // Collega recipe_id con id della tabella recipes
+        .join('users', 'comments.user_id', 'users.id') // Collega user_id con id della tabella users
+        .select('comments.*', 'recipes.title', 'users.username', 'users.avatar_url') // Ottieni anche il nome dell'utente e l'URL dell'avatar
+        .where({ 'comments.recipe_id': recipe_id }); // Filtra per recipe_id
+      res.json(comments);
     } catch (err) {
-        console.error('Errore durante il recupero dei commenti:', err);
-        res.status(500).json({ message: 'Errore del server' });
+      console.error('Errore durante il recupero dei commenti:', err);
+      res.status(500).json({ message: 'Errore del server' });
     }
-}
+  };
+  
 
 export const handleCommentDelete = async (req, res, db) => {
     const { recipe_id, id_comment } = req.params; // id della ricetta
