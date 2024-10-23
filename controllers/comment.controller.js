@@ -1,17 +1,28 @@
 export const handleAddComment = async (req, res, db) => {
     const { recipe_id } = req.params; // ID della ricetta
-    const { id, user_id, user_name, comment_text, rating, create_at } = req.body;
+    const { 
+      id, 
+      user_id, 
+      user_name, 
+      comment_text, 
+      rating, 
+      create_at, 
+      avatar_url,
+      title,
+    } = req.body;
 
     try {
         const result = await db('comments')
             .insert({
-                id_comment: id,
-                recipe_id: recipe_id,
-                user_name: user_name,
-                user_id: user_id,
-                comment_text: comment_text,
-                rating: rating,
-                create_at: create_at,
+              id_comment: id,
+              recipe_id: recipe_id,
+              user_name: user_name,
+              user_id: user_id,
+              comment_text: comment_text,
+              rating: rating,
+              create_at: create_at,
+              title: title,
+              avatar_url: avatar_url,
             })
             .returning('*')
 
