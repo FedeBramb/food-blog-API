@@ -7,8 +7,6 @@ export const handleAddComment = async (req, res, db) => {
       comment_text, 
       rating, 
       create_at, 
-      avatar_url,
-      title,
     } = req.body;
 
     try {
@@ -21,8 +19,6 @@ export const handleAddComment = async (req, res, db) => {
               comment_text: comment_text,
               rating: rating,
               create_at: create_at,
-              title: title,
-              avatar_url: avatar_url,
             })
             .returning('*')
 
