@@ -60,7 +60,7 @@ export const handleAllComments = async (req, res, db) => {
       const comments = await db('comments')
         .join('recipes', 'comments.recipe_id', 'recipes.id') // Collega recipe_id con id della tabella recipes
         .join('users', 'comments.user_id', 'users.id') // Collega user_id con id della tabella users
-        .select('comments.*', 'recipes.title', 'users.username', 'users.avatar_url') // Ottieni anche il nome dell'utente e l'URL dell'avatar
+        .select('comments.*', 'recipes.title', 'users.avatar_url') // Ottieni anche il nome dell'utente e l'URL dell'avatar
         .where({ 'comments.recipe_id': recipe_id }); // Filtra per recipe_id
       res.json(comments);
     } catch (err) {
