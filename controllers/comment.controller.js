@@ -46,7 +46,7 @@ export const handleAllComments = async (req, res, db) => {
       const comments = await db('comments')
         .join('recipes', 'comments.recipe_id', 'recipes.id') // Collega recipe_id con id della tabella recipes
         .join('users', 'comments.user_id', 'users.id') // Collega user_id con id della tabella users
-        .select('comments.*', 'recipes.title', 'users.avatar_url'); // Ottieni anche il nome dell'utente e l'URL dell'avatar
+        .select('comments.*', 'recipes.title', 'users.avatar_url'); //  Ottieni anche il nome dell'utente e l'URL dell'avatar
       res.json(comments);
     } catch (error) {
       res.status(500).json({ error: 'Errore nel recupero dei commenti' });
